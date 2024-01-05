@@ -1,0 +1,17 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "nodemon index.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "nodemon": "^3.0.2"
+    },
+    "repository": "https://github.com/NVT01012003/allbirds-clone-app.git",
+    "author": "trangnv",
+    "license": "MIT"
+}
