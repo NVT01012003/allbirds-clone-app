@@ -8,7 +8,7 @@ export const authenticateToken = async (req, res, next) => {
     const token = req.headers.authorization;
     if (!token)
         return res.status(401).json({
-            message: "Acess denied",
+            message: "Access denied",
         });
     jwt.verify(token, jwt_secret, (err, decoded) => {
         if (err) {

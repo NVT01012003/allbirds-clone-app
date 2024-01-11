@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // import file config
 import { sequelize } from "./config/db.js";
@@ -23,6 +24,7 @@ app.use(
         credentials: true,
     })
 );
+app.use(cookieParser());
 
 // Route
 app.use("/api", route);

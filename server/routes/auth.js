@@ -124,3 +124,47 @@ authRouter.post("/login", async (req, res, next) => {
         next(e);
     }
 });
+
+authRouter.get("/get-token", async (req, res, next) => {
+    try {
+        const { refresh_token } = req.cookies;
+        if (!refresh_token)
+            return res.status(401).json({ message: "Access denied" });
+        const decoded = jwt.decode(refresh_token, jwt_refresh_token_secret);
+        if (!decoded) return res.status(403).json({ message: "Forbidden" });
+        const { id, role } = decoded;
+        const user = await getUser({ id });
+        const accessToken = jwt.sign(
+            { id: user.id, role: user.role },
+            jwt_secret,
+            {
+                expiresIn: "2h",
+            }
+        );
+        const refreshToken = jwt.sign(
+            { id: user.id, role: user.role },
+            jwt_refresh_token_secret,
+            {
+                expiresIn: "2d",
+            }
+        );
+        res.cookie("refresh_token", refreshToken, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 2 * 60 * 24 * 60 * 1000,
+        }).json({
+            message: "OK",
+            element: {
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                },
+                token: `Bearer ${accessToken}`,
+            },
+        });
+    } catch (e) {
+        next(e);
+    }
+});

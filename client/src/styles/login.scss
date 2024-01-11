@@ -1,0 +1,113 @@
+.login-register {
+    background-color: #f1ebe7;
+    padding: 255px 0 200px;
+    display: flex;
+    justify-content: center;
+    .login-register-wrapper {
+        width: 980px;
+        display: flex;
+        h1 {
+            font-size: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            line-height: 24px;
+        }
+        input {
+            width: 100%;
+            margin-bottom: 19px;
+            padding: 19px 20px;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 22.4px;
+            border-radius: 2px;
+        }
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            line-height: 12px;
+            margin-bottom: 8px;
+        }
+        span {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 13px;
+            line-height: 12px;
+            font-weight: 500;
+            text-decoration: underline 1px #000;
+            text-transform: uppercase;
+        }
+        .submit {
+            padding: 23px 0;
+            margin: 0;
+            font-size: 13.5px;
+            line-height: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            background-color: black;
+            border: 2px solid #000000;
+            color: #fff;
+            transition: all 0.2s ease-in;
+            cursor: pointer;
+            &:hover {
+                background-color: transparent;
+                color: #000;
+            }
+        }
+        .login {
+            width: 50%;
+            padding-right: 55px;
+            margin-right: 23px;
+            h1 {
+                margin-bottom: 50px;
+            }
+        }
+        .register {
+            width: 50%;
+            padding-left: 55px;
+            p {
+                font-size: 16.5px;
+                margin: 19px 0;
+                line-height: 22px;
+                font-weight: 400;
+            }
+            span {
+                text-decoration: none;
+            }
+            .privacy-policy {
+                text-decoration: none;
+                font-size: 12px;
+                font-weight: 400;
+                margin: 15px 0 30px;
+                text-transform: unset;
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+                a {
+                    text-decoration: underline 1px #000;
+                }
+            }
+            .checkbox-confirm {
+                height: auto;
+                display: flex;
+                align-items: center;
+                margin-bottom: 16px;
+                label {
+                    margin: 0;
+                    text-transform: unset;
+                    font-size: 15px;
+                }
+                #checkbox {
+                    width: 18px;
+                    height: 21px;
+                    background-color: #000;
+                    margin: 0 14px 0 0;
+                    &:checked {
+                        accent-color: black;
+                    }
+                }
+            }
+        }
+    }
+}

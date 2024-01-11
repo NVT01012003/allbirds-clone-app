@@ -8,6 +8,8 @@ import { Order_item } from "../models/order_item.js";
 import { Category } from "../models/category.js";
 import { Cart } from "../models/cart.js";
 import { Cart_item } from "../models/cart_item.js";
+import { Chat } from "../models/chat.js";
+import { Chat_item } from "../models/chat_item.js";
 
 // products
 Category.hasMany(Product, { sourceKey: "id" });
@@ -50,3 +52,7 @@ Review.belongsTo(User, { targetKey: "id" });
 
 Product.hasMany(Review, { sourceKey: "id" });
 Review.belongsTo(Product, { targetKey: "id" });
+
+// chat_items
+Chat.hasMany(Chat_item, { sourceKey: "id" });
+Chat_item.belongsTo(Chat, { targetKey: "id" });
