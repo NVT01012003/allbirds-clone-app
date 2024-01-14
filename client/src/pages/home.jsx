@@ -2,8 +2,9 @@ import "../styles/home.scss";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CategoryCard from "../components/categoryCard";
-import CollectionCard from "../components/collectionCard";
+import Carousel from "../components/carousel";
 
+// function
 const calculatePosition = () => {
     return {
         1: (window.innerWidth - 10) / 2 - 175.53 / 2 - 72 - 188.49 - 24,
@@ -13,14 +14,23 @@ const calculatePosition = () => {
 };
 
 const calculateCarouselWidth = (size) => {
-    const windowSize =
-        window.innerWidth - 16 < 1332 + 24 ? window.innerWidth - 16 : 1332 + 48;
+    const carouselSize =
+        window.innerWidth - 16 < 1332 + 48 ? window.innerWidth - 16 : 1332 + 48;
     return {
-        width: ((windowSize - 72 * 2 - 24 * 2) / 3) * 10 + 9 * 24,
+        width: ((carouselSize - 72 * 2 - 24 * 2) / 3) * 10 + 9 * 24,
         size: "large",
     };
 };
 
+const calculateCarouselSize = () => {
+    const windowSize = window.innerWidth - 16;
+    const carouselSize =
+        windowSize < 1332 + 48 ? window.innerWidth - 16 : 1332 + 48;
+    if (windowSize <= 1380) return { margin: 0, size: carouselSize };
+    else return { margin: (windowSize - 1380 - 16) / 2, size: carouselSize };
+};
+
+// main
 function Home() {
     const collectionWidths = {
         large: {
@@ -30,6 +40,7 @@ function Home() {
         },
     };
 
+    // variable state
     const [sliderPosition, setSliderPosition] = useState({
         position: calculatePosition(),
         width: collectionWidths.large,
@@ -39,15 +50,21 @@ function Home() {
     const [carouselWidth, setCarouselWidth] = useState({
         ...calculateCarouselWidth(),
     });
+    const [carouselSize, setCarouselSize] = useState({
+        ...calculateCarouselSize(),
+    });
 
+    // handle function
     const handleResize = () => {
         setSliderPosition((pre) => ({
             ...pre,
             position: calculatePosition(),
         }));
         setCarouselWidth((pre) => ({ ...calculateCarouselWidth() }));
+        setCarouselSize((pre) => ({ ...calculateCarouselSize() }));
     };
 
+    // effect hooks
     useEffect(() => {
         window.addEventListener("resize", handleResize);
 
@@ -55,6 +72,7 @@ function Home() {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
     return (
         <div className="home-container">
             <div className="home-page">
@@ -218,43 +236,10 @@ function Home() {
                             <div className="carousel-wrapper">
                                 <div className="card-carousel-container large">
                                     <div className="card-carousel-wrapper">
-                                        <div
-                                            className="card-carousel"
-                                            style={{
-                                                width: `${carouselWidth.width}px`,
-                                            }}
-                                        >
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                        </div>
+                                        <Carousel
+                                            carouselSize={carouselSize}
+                                            carouselWidth={carouselWidth}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -291,43 +276,10 @@ function Home() {
                             <div className="carousel-wrapper">
                                 <div className="card-carousel-container large">
                                     <div className="card-carousel-wrapper">
-                                        <div
-                                            className="card-carousel"
-                                            style={{
-                                                width: `${carouselWidth.width}px`,
-                                            }}
-                                        >
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                        </div>
+                                        <Carousel
+                                            carouselSize={carouselSize}
+                                            carouselWidth={carouselWidth}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -366,43 +318,10 @@ function Home() {
                             <div className="carousel-wrapper">
                                 <div className="card-carousel-container large">
                                     <div className="card-carousel-wrapper">
-                                        <div
-                                            className="card-carousel"
-                                            style={{
-                                                width: `${carouselWidth.width}px`,
-                                            }}
-                                        >
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                            <div className="card-carousel-item">
-                                                <CollectionCard />
-                                            </div>
-                                        </div>
+                                        <Carousel
+                                            carouselSize={carouselSize}
+                                            carouselWidth={carouselWidth}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -438,6 +357,46 @@ function Home() {
                                     <Link href="/">Privacy Policy</Link> and{" "}
                                     <Link href="/">Terms.</Link>
                                 </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="brand-values-module">
+                        <div className="brand-values-module-container">
+                            <h1 className="heading">The Allbirds Approach</h1>
+                            <div className="brand-values-module_content">
+                                <div className="brand-values-module_content-item">
+                                    <h3>Wear-All-Day Comfort</h3>
+                                    <p>
+                                        Lightweight, bouncy, and wildly
+                                        comfortable, Allbirds shoes make any
+                                        outing feel efforties. Slip in, lace up,
+                                        or slide them on and enjoy the comfy
+                                        support.
+                                    </p>
+                                    <Link to="/">Learn More</Link>
+                                </div>
+                                <div className="brand-values-module_content-item">
+                                    <h3>Sustainability In Every Step</h3>
+                                    <p>
+                                        From materials to transport, we're
+                                        working to reduce our carbon footprint
+                                        to near zero. Holding ourselves
+                                        accountable and striving for climate
+                                        goals isn't a 30-year goal—it's now.
+                                    </p>
+                                    <Link to="/">Learn More</Link>
+                                </div>
+                                <div className="brand-values-module_content-item">
+                                    <h3>Materials From The Earth</h3>
+                                    <p>
+                                        We replace petroleum-based synthetics
+                                        with natural alternatives wherever we
+                                        can. Like using wool, tree fiber, and
+                                        sugar cane. They’re soft, breathable,
+                                        and better for the planet—win, win, win.
+                                    </p>
+                                    <Link to="/">Learn More</Link>
+                                </div>
                             </div>
                         </div>
                     </div>

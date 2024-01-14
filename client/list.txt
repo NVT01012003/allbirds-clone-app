@@ -1,0 +1,34 @@
+
+LIST OF THE PAGE
+
+// main
+- Search
+- Account   ✓
+- Account address   ✓
+- Checkout
+- Shipping
+- Payment
+
+// sub
+- Sustainable
+- Privacy Policy
+- Collections
+- Collection
+- Returns - Exchange
+- Refer a friend
+- Afterpay
+- Help
+- Store location
+- Story
+- Materials
+- Investors
+- Shoe care
+- Partnerships
+- Single partnership
+- Affiliates
+- Bulk order
+- Carrers
+- Press
+- Community offers
+- The perch
+

@@ -1,8 +1,3 @@
-a {
-    color: var(--primary-text-color);
-    text-decoration: none;
-}
-
 .home-container {
     padding: 100px 0 0;
     .home-page {
@@ -89,7 +84,6 @@ a {
         }
         .home_content {
             padding-top: 36px;
-            padding-bottom: 48px;
             .content_category {
                 padding: 0 24px 48px;
                 color: var(--primary-text-color);
@@ -157,7 +151,7 @@ a {
                         margin-bottom: 18px;
                     }
                     .promo-btn {
-                        margin-top: 12px;
+                        padding-top: 12px;
                     }
                 }
             }
@@ -185,12 +179,16 @@ a {
                     }
                     .form_input {
                         .form_input-wrapper {
+                            display: flex;
+                            justify-content: center;
                             .email-wrapper {
+                                width: 100%;
                                 max-width: 840px;
                                 padding: 0 48px;
                                 margin-bottom: 24px;
-                                justify-content: center;
+                                display: flex;
                                 .email {
+                                    flex-grow: 1;
                                     background-color: #fff;
                                     color: var(--primary-text-color);
                                     border-bottom: 2px solid
@@ -221,6 +219,41 @@ a {
                             a {
                                 text-decoration: underline;
                                 font-weight: 500;
+                            }
+                        }
+                    }
+                }
+            }
+            .brand-values-module {
+                width: 100%;
+                padding: 78px 0;
+                .brand-values-module-container {
+                    max-width: 1380px;
+                    margin: 0 auto;
+                    padding: 0 24px;
+                    h1 {
+                        margin-bottom: 24px;
+                    }
+                    .brand-values-module_content {
+                        display: flex;
+                        gap: 24px;
+                        justify-content: space-between;
+                        .brand-values-module_content-item {
+                            flex: 1;
+                            h3 {
+                                font-size: 24px;
+                                line-height: 29px;
+                                margin-bottom: 9px;
+                            }
+                            p {
+                                font-size: 15px;
+                                line-height: 21px;
+                                min-height: 84px;
+                            }
+                            a {
+                                font-size: 15px;
+                                line-height: 21px;
+                                text-decoration: underline;
                             }
                         }
                     }
@@ -258,7 +291,6 @@ a {
                 .card-carousel {
                     display: flex;
                     gap: 24px;
-                    transition: all 200ms ease-out 0s;
                     transform: translate3d(0, 0, 0);
                 }
             }
