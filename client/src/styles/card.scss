@@ -153,8 +153,8 @@ a {
         &::before {
             content: "";
             position: absolute;
-            z-index: -1;
-            background-color: white;
+            z-index: 1;
+            background-color: transparent;
             inset: -24px;
             box-shadow: rgba(0, 0, 0, 0.23) 0 10px 30px 0px;
         }

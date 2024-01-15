@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import CollectionCard from "./collectionCard";
 
-function Carousel({ carouselSize, carouselWidth }) {
+function Carousel({ carouselSize, carouselWidth, type }) {
     const [offsetX, setOffsetX] = useState(null);
     const [dragging, setDragging] = useState(false);
 

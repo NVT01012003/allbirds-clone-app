@@ -2,7 +2,7 @@
 LIST OF THE PAGE
 
 // main
-- Search
+- Search    ✓
 - Account   ✓
 - Account address   ✓
 - Checkout
@@ -10,16 +10,16 @@ LIST OF THE PAGE
 - Payment
 
 // sub
-- Sustainable
-- Privacy Policy
 - Collections
 - Collection
+- Sustainable
 - Returns - Exchange
+- Story
+- Privacy Policy
 - Refer a friend
 - Afterpay
 - Help
 - Store location
-- Story
 - Materials
 - Investors
 - Shoe care

@@ -6,11 +6,19 @@ import Carousel from "../components/carousel";
 
 // function
 const calculatePosition = () => {
-    return {
-        1: (window.innerWidth - 10) / 2 - 175.53 / 2 - 72 - 188.49 - 24,
-        2: (window.innerWidth - 10) / 2 - 175.53 / 2 - 24,
-        3: (window.innerWidth - 10) / 2 + 175.53 / 2 + 72 - 24,
-    };
+    const windowSize = window.innerWidth - 16;
+    if (windowSize <= 48 + 1236)
+        return {
+            1: (window.innerWidth - 16) / 2 - 175.53 / 2 - 72 - 188.49 - 24 + 4,
+            2: (window.innerWidth - 16) / 2 - 175.53 / 2 - 24 + 4,
+            3: (window.innerWidth - 16) / 2 + 175.53 / 2 + 72 - 24 + 4,
+        };
+    else
+        return {
+            1: 1236 / 2 - 175.53 / 2 - 72 - 188.49 + 4,
+            2: 1236 / 2 - 175.53 / 2 + 4,
+            3: 1236 / 2 + 175.53 / 2 + 72 + 4,
+        };
 };
 
 const calculateCarouselWidth = (size) => {

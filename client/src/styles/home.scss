@@ -97,6 +97,7 @@
                     align-items: center;
                     .categories {
                         position: relative;
+                        max-width: 1236px;
                         display: flex;
                         width: 100%;
                         justify-content: center;
@@ -125,7 +126,7 @@
                         }
                     }
                     .category-carousel {
-                        max-width: 1284px;
+                        max-width: 1236px;
                     }
                 }
             }

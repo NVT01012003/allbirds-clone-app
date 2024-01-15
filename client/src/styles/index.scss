@@ -2,16 +2,25 @@
 .flex-container {
     display: flex;
     justify-content: space-between;
-    margin-left: -12px;
-    margin-right: -12px;
-    .flex-item {
-        margin: 0 12px;
-    }
+    gap: 24px;
 }
 // grid 3 item gap 24px
 
 .flex_large {
-    .flex-item_large {
+    .flex-item.flex-item_large {
+        width: var(--card-width-large);
+    }
+}
+
+//
+.product-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-flex_large {
+    gap: var(--card-gap-large);
+    .product-flex-item_large {
         width: var(--card-width-large);
     }
 }
