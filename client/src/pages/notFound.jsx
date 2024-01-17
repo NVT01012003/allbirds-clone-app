@@ -1,51 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Carousel from "../components/carousel";
 import "../styles/notFound.scss";
-
-const calculateCarouselWidth = (size) => {
-    const carouselSize =
-        window.innerWidth - 16 < 1332 + 48 ? window.innerWidth - 16 : 1332 + 48;
-    return {
-        width: ((carouselSize - 72 * 2 - 24 * 3) / 4) * 10 + 9 * 24,
-        size: "large",
-    };
-};
-
-const calculateCarouselSize = () => {
-    const windowSize = window.innerWidth - 16;
-    const carouselSize =
-        windowSize < 1332 + 48 ? window.innerWidth - 16 : 1332 + 48;
-    if (windowSize <= 1380) return { margin: 0, size: carouselSize };
-    else return { margin: (windowSize - 1380 - 16) / 2, size: carouselSize };
-};
+import { WindowSizeContext } from "../contexts/windowSizeContext";
+import { Link } from "react-router-dom";
 
 function NotFound() {
-    // eslint-disable-next-line no-unused-vars
-    const [carouselWidth, setCarouselWidth] = useState({
-        ...calculateCarouselWidth(),
-    });
-    // eslint-disable-next-line no-unused-vars
-    const [carouselSize, setCarouselSize] = useState({
-        ...calculateCarouselSize(),
-    });
-
-    // handle function
-    const handleResize = () => {
-        setCarouselWidth((pre) => ({ ...calculateCarouselWidth() }));
-        setCarouselSize((pre) => ({ ...calculateCarouselSize() }));
-    };
-
-    // effect hooks
-    useEffect(() => {
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+    const { carouselWidthLayout4, carouselSize } =
+        useContext(WindowSizeContext);
+    const [slider, setSlider] = useState(0);
 
     return (
-        <div className="notfound">
+        <div className="notfound-page">
             <div className="notfound-container">
                 <div className="notfound-wrapper">
                     <h2 className="heading">Uh-Oh, Nothing To See Here!</h2>
@@ -54,32 +19,86 @@ function NotFound() {
                         different direction.
                     </p>
                     <div className="notfound_btn">
-                        <button>shop men</button>
-                        <button>shop women</button>
+                        <button className="btn-default btn-invert">
+                            shop men
+                        </button>
+                        <button className="btn-default btn-invert">
+                            shop women
+                        </button>
                     </div>
                 </div>
                 <div className="notfound_explore-more">
                     <h2 className="heading">Explore More</h2>
-                    <div className="explore-more_card-container">
-                        <div className="explore_card-item">
-                            <img
-                                src="//cdn.allbirds.com/image/upload/f_auto,q_auto,w_1000/cms/1z4Rx0CJeXXMdUzdxqtbju/85c462222fc0815293f12d9f0956a165/Womens_Explore_More_Everyday.jpg"
-                                alt="explore-item-img"
-                            />
-                            <p>Everyday Sneakers</p>
+                    <div className="explore-more_tabs">
+                        <div className="tabs-container">
+                            <div className="tabs-wrapper">
+                                <div className="tabs_tab">
+                                    <button
+                                        onClick={() => setSlider(0)}
+                                        className={0 === slider ? "active" : ""}
+                                    >
+                                        womens
+                                    </button>
+                                </div>
+                                <div className="tabs_tab">
+                                    <button
+                                        onClick={() => setSlider(1)}
+                                        className={1 === slider ? "active" : ""}
+                                    >
+                                        mens
+                                    </button>
+                                </div>
+                                <span
+                                    className="tabs_slider"
+                                    style={{
+                                        transform: `translate3d(${
+                                            slider * 203
+                                        }px, 0, 0)`,
+                                    }}
+                                ></span>
+                            </div>
                         </div>
+                    </div>
+                    <div className="explore-more_card-container">
+                        <Link to="/" className="explore_card-item-link">
+                            <div className="explore_card-item">
+                                <img
+                                    src="//cdn.allbirds.com/image/upload/f_auto,q_auto,w_1000/cms/1z4Rx0CJeXXMdUzdxqtbju/85c462222fc0815293f12d9f0956a165/Womens_Explore_More_Everyday.jpg"
+                                    alt="explore-item-img"
+                                />
+                                <p>Everyday Sneakers</p>
+                            </div>
+                        </Link>
+                        <Link to="/" className="explore_card-item-link">
+                            <div className="explore_card-item">
+                                <img
+                                    src="//cdn.allbirds.com/image/upload/f_auto,q_auto,w_1000/cms/1z4Rx0CJeXXMdUzdxqtbju/85c462222fc0815293f12d9f0956a165/Womens_Explore_More_Everyday.jpg"
+                                    alt="explore-item-img"
+                                />
+                                <p>Everyday Sneakers</p>
+                            </div>
+                        </Link>
+                        <Link to="/" className="explore_card-item-link">
+                            <div className="explore_card-item">
+                                <img
+                                    src="//cdn.allbirds.com/image/upload/f_auto,q_auto,w_1000/cms/1z4Rx0CJeXXMdUzdxqtbju/85c462222fc0815293f12d9f0956a165/Womens_Explore_More_Everyday.jpg"
+                                    alt="explore-item-img"
+                                />
+                                <p>Everyday Sneakers</p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
                 <div className="notfound_popular-products">
                     <div className="popular-products_heading">
-                        <h2>Our Most Popular Products</h2>
+                        <h2 className="heading">Our Most Popular Products</h2>
                     </div>
                     <div className="carousel-container">
                         <div className="carousel-wrapper">
                             <div className="card-carousel-container large">
                                 <div className="card-carousel-wrapper">
                                     <Carousel
-                                        carouselWidth={carouselWidth}
+                                        carouselWidth={carouselWidthLayout4}
                                         carouselSize={carouselSize}
                                         type="popular-product"
                                     />
@@ -87,15 +106,6 @@ function NotFound() {
                             </div>
                         </div>
                     </div>
-                    {/* <div className="popular-products_carousel">
-                        <div className="popular-products_carousel-container">
-                            <Carousel
-                                carouselWidth={carouselWidth}
-                                carouselSize={carouselSize}
-                                type="popular-product"
-                            />
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>

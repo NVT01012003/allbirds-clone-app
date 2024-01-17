@@ -84,7 +84,7 @@ function TopNavigation() {
                     </button>
                 </div>
                 <div className="logo">
-                    <a href="/">
+                    <a className="link-home" href="/">
                         <svg
                             width="100"
                             height="32"
