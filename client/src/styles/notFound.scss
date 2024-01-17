@@ -1,0 +1,119 @@
+.notfound-page {
+    padding-top: 126px;
+    background-color: rgb(249, 249, 249);
+    .notfound-container {
+        .notfound-wrapper {
+            padding: 126px 24px 72px;
+            text-align: center;
+            .notfound_subheading {
+                margin-top: 18px;
+                font-size: 17px;
+                line-height: 24px;
+                letter-spacing: 0.5px;
+            }
+            .notfound_btn {
+                margin: 30px auto 0;
+                display: flex;
+                justify-content: center;
+                gap: 6px;
+                button {
+                    width: 193px;
+                    line-height: 14px;
+                    font-size: 15px;
+                    height: auto;
+                    margin: 0;
+                }
+            }
+        }
+        .notfound_explore-more {
+            padding: 0 24px 72px;
+            .heading {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 12px;
+            }
+            .explore-more_tabs {
+                width: 100%;
+                .tabs-container {
+                    width: 406px;
+                    margin: 0 auto 24px;
+                    .tabs-wrapper {
+                        position: relative;
+                        display: flex;
+                        .tabs_tab {
+                            width: 50%;
+                            height: 52px;
+                            display: inherit;
+                            justify-content: center;
+                            align-items: center;
+                            button {
+                                background-color: transparent;
+                                margin-top: 3px;
+                                font-size: 18px;
+                                font-weight: 500;
+                                color: #4d5559;
+                                letter-spacing: 2px;
+                                line-height: 20.8px;
+                                padding: 0 18px;
+                                text-transform: uppercase;
+                                cursor: pointer;
+                            }
+                            .active {
+                                color: var(--primary-text-color);
+                            }
+                        }
+                        .tabs_slider {
+                            display: block;
+                            position: absolute;
+                            width: 203px;
+                            height: 3px;
+                            background-color: var(--primary-text-color);
+                            bottom: -1px;
+                            left: 0;
+                            transform: translate3d(0, 0, 0);
+                            transition: all 250ms ease-in-out 0s;
+                        }
+                    }
+                }
+            }
+            .explore-more_card-container {
+                max-width: 1332px;
+                margin: 0 auto;
+                padding: 0 48px;
+                display: flex;
+                gap: 24px;
+                .explore_card-item-link {
+                    width: var(--card-width-large);
+                    .explore_card-item {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        img {
+                            width: 100%;
+                            aspect-ratio: 1 / 1;
+                        }
+                        p {
+                            padding: 12px;
+                            min-height: 55px;
+                            font-size: 15px;
+                            font-weight: 500;
+                            color: #000;
+                            background-color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .notfound_popular-products {
+            .popular-products_heading {
+                max-width: 1332px;
+                margin: 0 auto;
+                padding: 0 24px;
+                h2 {
+                    margin-bottom: 12px;
+                    padding: 0 24px;
+                }
+            }
+        }
+    }
+}

@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import CollectionCard from "./collectionCard";
+import ProductCard from "./productCard";
 
-function Carousel({ carouselSize, carouselWidth }) {
+function Carousel({ carouselSize, carouselWidth, type }) {
     const [offsetX, setOffsetX] = useState(null);
     const [dragging, setDragging] = useState(false);
 
@@ -39,7 +40,6 @@ function Carousel({ carouselSize, carouselWidth }) {
         setDragging(false);
         carousel.current.style.cursor = "grab";
     };
-
     return (
         <div
             className="card-carousel"
@@ -53,34 +53,49 @@ function Carousel({ carouselSize, carouselWidth }) {
             onMouseLeave={(e) => handleMouseUp(e, carousel)}
         >
             <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
             <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
             <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
             <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
             <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
             <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
             <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
             <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
             <div className="card-carousel-item">
-                <CollectionCard />
-            </div>
-            <div className="card-carousel-item">
-                <CollectionCard />
+                {(type === "popular-product" && (
+                    <ProductCard type={type} />
+                )) || <CollectionCard />}
             </div>
         </div>
     );

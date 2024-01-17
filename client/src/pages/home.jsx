@@ -1,81 +1,49 @@
 import "../styles/home.scss";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import CategoryCard from "../components/categoryCard";
 import Carousel from "../components/carousel";
-
-// function
-const calculatePosition = () => {
-    return {
-        1: (window.innerWidth - 10) / 2 - 175.53 / 2 - 72 - 188.49 - 24,
-        2: (window.innerWidth - 10) / 2 - 175.53 / 2 - 24,
-        3: (window.innerWidth - 10) / 2 + 175.53 / 2 + 72 - 24,
-    };
-};
-
-const calculateCarouselWidth = (size) => {
-    const carouselSize =
-        window.innerWidth - 16 < 1332 + 48 ? window.innerWidth - 16 : 1332 + 48;
-    return {
-        width: ((carouselSize - 72 * 2 - 24 * 2) / 3) * 10 + 9 * 24,
-        size: "large",
-    };
-};
-
-const calculateCarouselSize = () => {
-    const windowSize = window.innerWidth - 16;
-    const carouselSize =
-        windowSize < 1332 + 48 ? window.innerWidth - 16 : 1332 + 48;
-    if (windowSize <= 1380) return { margin: 0, size: carouselSize };
-    else return { margin: (windowSize - 1380 - 16) / 2, size: carouselSize };
-};
+import { useContext, useEffect, useRef, useState } from "react";
+import { WindowSizeContext } from "../contexts/windowSizeContext";
 
 // main
 function Home() {
-    const collectionWidths = {
-        large: {
-            1: 188.49,
-            2: 175.53,
-            3: 180,
-        },
-    };
+    const {
+        carouselSize,
+        carouselWidth,
+        calculateHomeSliderPosition,
+        windowSize,
+    } = useContext(WindowSizeContext);
 
-    // variable state
-    const [sliderPosition, setSliderPosition] = useState({
-        position: calculatePosition(),
-        width: collectionWidths.large,
+    const category1 = useRef();
+    const category2 = useRef();
+    const category3 = useRef();
+
+    const [collectionsWidth, setCollectionsWidth] = useState({
+        1: category1.current?.offsetWidth || 195,
+        2: category2.current?.offsetWidth || 182,
+        3: category3.current?.offsetWidth || 186,
+    });
+    const [homeSliderPosition, setHomeSliderPosition] = useState({
+        position: calculateHomeSliderPosition(windowSize, collectionsWidth),
         item: 1,
-        size: "large",
-    });
-    const [carouselWidth, setCarouselWidth] = useState({
-        ...calculateCarouselWidth(),
-    });
-    const [carouselSize, setCarouselSize] = useState({
-        ...calculateCarouselSize(),
     });
 
-    // handle function
-    const handleResize = () => {
-        setSliderPosition((pre) => ({
-            ...pre,
-            position: calculatePosition(),
-        }));
-        setCarouselWidth((pre) => ({ ...calculateCarouselWidth() }));
-        setCarouselSize((pre) => ({ ...calculateCarouselSize() }));
-    };
-
-    // effect hooks
     useEffect(() => {
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+        setCollectionsWidth({
+            1: category1.current?.offsetWidth || 195,
+            2: category2.current?.offsetWidth || 182,
+            3: category3.current?.offsetWidth || 186,
+        });
+        setHomeSliderPosition({
+            position: calculateHomeSliderPosition(windowSize, collectionsWidth),
+            item: 1,
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [windowSize, category1, category2, category3]);
 
     return (
-        <div className="home-container">
-            <div className="home-page">
+        <div className="home-page">
+            <div className="home-container">
                 <div className="home_banner">
                     <div className="banner-container">
                         <div className="home_banner-image">
@@ -131,14 +99,16 @@ function Home() {
                         <div className="category-container">
                             <div className="categories">
                                 <h2
+                                    ref={category1}
+                                    id="category1"
                                     onClick={() =>
-                                        setSliderPosition((pre) => ({
+                                        setHomeSliderPosition((pre) => ({
                                             ...pre,
                                             item: 1,
                                         }))
                                     }
                                     className={
-                                        sliderPosition.item === 1
+                                        homeSliderPosition.item === 1
                                             ? "active"
                                             : ""
                                     }
@@ -146,14 +116,16 @@ function Home() {
                                     for everyday
                                 </h2>
                                 <h2
+                                    ref={category2}
+                                    id="category2"
                                     onClick={() =>
-                                        setSliderPosition((pre) => ({
+                                        setHomeSliderPosition((pre) => ({
                                             ...pre,
                                             item: 2,
                                         }))
                                     }
                                     className={
-                                        sliderPosition.item === 2
+                                        homeSliderPosition.item === 2
                                             ? "active"
                                             : ""
                                     }
@@ -161,14 +133,16 @@ function Home() {
                                     for activity
                                 </h2>
                                 <h2
+                                    ref={category3}
+                                    id="category3"
                                     onClick={() =>
-                                        setSliderPosition((pre) => ({
+                                        setHomeSliderPosition((pre) => ({
                                             ...pre,
                                             item: 3,
                                         }))
                                     }
                                     className={
-                                        sliderPosition.item === 3
+                                        homeSliderPosition.item === 3
                                             ? "active"
                                             : ""
                                     }
@@ -180,13 +154,13 @@ function Home() {
                                     style={{
                                         left: 0,
                                         width: `${
-                                            sliderPosition.width[
-                                                sliderPosition.item
+                                            collectionsWidth[
+                                                homeSliderPosition.item
                                             ]
                                         }px`,
                                         transform: `translateX(${
-                                            sliderPosition.position[
-                                                `${sliderPosition.item}`
+                                            homeSliderPosition.position[
+                                                `${homeSliderPosition.item}`
                                             ]
                                         }px)`,
                                     }}

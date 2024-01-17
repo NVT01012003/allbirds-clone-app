@@ -76,7 +76,7 @@ function Login() {
                         <Link to="/">Terms of Use</Link> and{" "}
                         <Link to="/">Privacy Policy</Link>
                     </span>
-                    <span>* required fields</span>
+                    <span className="required">* required fields</span>
                 </div>
             </div>
         </div>
